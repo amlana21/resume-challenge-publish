@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "portfolio-app"
+s3_bucket = "<bucket_name>"
+s3_prefix = "appbackend"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"

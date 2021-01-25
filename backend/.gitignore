@@ -1,0 +1,6 @@
+portfolioenv/*
+.idea/*
+__pycache__
+package/*
+.aws-sam/*
+.venv

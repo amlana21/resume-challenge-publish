@@ -1,0 +1,4 @@
+Flask
+Flask-Cors
+boto3
+aws-wsgi

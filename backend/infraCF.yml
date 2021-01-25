@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+
+  DeployS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: <bucket_name>
+
+  LambdaTrustRole:
+    Type: AWS::IAM::Role    
+    Properties:
+      RoleName: PortfolioAppRoleCust
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action: ['sts:AssumeRole']
+          Effect: Allow
+          Principal:
+            Service: [lambda.amazonaws.com]
+        Version: '2012-10-17'
+      Path: /
+      Policies:
+        - PolicyName: CustLambdaAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Action:
+                - 'logs:*'
+                - 's3:*'
+                - 'dynamodb:*'
+                - 'cloudwatch:*'
+                - 'sns:*'
+                - 'lambda:*'
+                Effect: Allow
+                Resource: '*'
+
+Outputs:
+
+  LambdaRole:
+    Description: Ref of Created Lambda Service Role
+    Export: 
+      Name: !Sub ${AWS::StackName}::LambdaTrustRole
+    Value:
+      Fn::GetAtt: LambdaTrustRole.Arn

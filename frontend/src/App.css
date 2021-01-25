@@ -1,0 +1,487 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+      
+  height: 100%;
+  width:100%;
+  /* min-height: 100%; */
+  margin: 0px;
+  /* overflow: hidden; */
+  /* padding-bottom: 20px; */
+  padding:0px;
+  overflow-x: hidden; 
+  overflow-y: hidden; 
+}
+
+
+div#root,div.mainContainer{
+  /* background-color: aqua; */
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: #aaaaaa;
+  /* background-color: #495464; */
+  background-image: url("images/mainbackgrnd.png");
+
+}
+
+div.mobmainContainer{
+  display:none;
+}
+
+/* div.mainContainer{
+  display: fle
+} */
+
+
+div.midbox{
+  position: relative;
+  /* left:30%; */
+  top:9%;
+  /* background-color: blueviolet; */
+  /* margin: auto; */
+  left:30%;
+}
+
+img.webmainabouticon{
+  height: 120px;
+  margin: auto;
+  position: relative;
+  left:15%;
+}
+
+img.webmainabouticon:hover {
+  /* background-color: #d9d9d9;  */
+  cursor: pointer;
+}
+
+
+h2.midboxlabels1{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+  margin: auto;
+  position: relative;
+  left:10%;
+}
+
+h2.midboxlabels2{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+  margin: auto;
+  position: relative;
+  left:18%;
+}
+
+h2.midboxlabels3{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+  margin: auto;
+  position: relative;
+  left:8%;
+}
+
+h2.midboxlabels4{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+  margin: auto;
+  position: relative;
+  left:10%;
+}
+
+div.webmaintitlebox{
+  width: 600px;
+  height: 400px;
+}
+
+div.maintitlediv{
+  height: 30%;
+  /* background-color: red; */
+  top: 10%;
+}
+
+div.webaboutmemain{
+  background-color: #aaaaaa;
+background-image: url("images/mainbackgrnd.png");
+  position: relative;
+  top:10px;
+  width:95%;
+  margin:auto;
+  height: 700px;
+}
+
+div.toplabelback{
+  background-color: #797a7e;
+  background-image: url("images/toplabelback.png");
+}
+
+h2.webmaintitlename{
+  left: 40%;
+  position: relative;
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* float:left; */
+  /* width:30%; */
+}
+
+h2.webmaintitlename2{
+  left: 10%;
+  position: relative;
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* margin: auto; */
+}
+
+h2.webmaintitlescroll{
+  /* left: 40%; */
+  position: relative;
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  margin: auto;
+}
+
+div.maintitleicons:hover {
+  /* background-color: #d9d9d9;  */
+  cursor: pointer;
+}
+
+/* div.maintitleicons{
+  padding: 2px;
+} */
+
+div.maintitlegrid{
+  left: 20px;
+  position: relative;
+}
+
+div.webskillsmain{
+  /* background-color: brown; */
+  position: relative;
+  top:120px;
+  width:95%;
+  margin:auto;
+}
+
+
+div.webexpmain{
+  /* background-color: brown; */
+  position: relative;
+  top:10px;
+  width:95%;
+  margin:auto;
+}
+
+
+
+div.webskillsmain{
+  /* background-color: brown; */
+  position: relative;
+  top:10px;
+  width:95%;
+  margin:auto;
+}
+div.webskillspanel{
+  height:500px;
+  background-color: #bbbfca;
+}
+
+button.webskillimagebtn{
+  background-color: transparent;
+}
+
+div.webportfmain{
+  /* background-color: brown; */
+  position: relative;
+  top:10px;
+  width:95%;
+  margin:auto;
+  /* height:300px; */
+}
+
+div.webportfoliocertpanel{
+  height:500px;
+}
+
+h3.aboutmetab1box{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  text-decoration: underline;
+}
+
+h3.aboutmetoplabel{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+  margin: auto;
+}
+
+h5.aboutmetab1txt{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+}
+
+h4.webaboutmetab2box{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  text-decoration: underline;
+}
+
+h4.webmaintitlegridpaper{
+  color: #214252;
+  font-family: 'Caveat', cursive;
+  /* text-decoration: underline; */
+}
+
+div.webaboutmetabpanel{
+  height:550px;
+}
+
+div.webmainscrollbottomdiv{
+  background-color: #797a7e;
+  background-image: url("images/toptitleback.png");
+}
+
+div.webmainscrolltopdiv{
+  background-color: #797a7e;
+  background-image: url("images/toptitleback.png");
+}
+
+header.aboutmecontentframe{
+  background-color: #a6a9b6;
+}
+
+header.portfoliocontentframe{
+  background-color: #a6a9b6;
+}
+
+
+/*  ############################################################################################################################### */
+/*  #################################################style for mobile########################################################### */
+@media screen and (max-width: 800px) {
+
+  div.mainContainer{
+    display:none
+  }
+
+  div.mobmainContainer{
+    display:flex;
+    /* background-color: aqua; */
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: #aaaaaa;
+  background-image: url("images/mainbackgrnd.png");
+  }
+
+  div.mobmidbox{
+    /* position: relative; */
+    /* left:20%; */
+    top:30%;
+    background-color: blueviolet;
+  }
+
+  h3.mobaboutmetoplabel{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+  }
+  h4.mobaboutmetoplabel{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+  }
+  div.mobaboutmemain{
+    /* background-color: brown; */
+    position: relative;
+    top:10px;
+    /* width:110%; */
+    /* left: 5%; */
+    margin:auto;
+  }
+
+  div.mobaboutmetabpanel{
+    height:500px;
+    /* width: 100%; */
+    /* position: relative; */
+  }
+  
+
+  h3.mobaboutmetab1box{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    text-decoration: underline;
+  }
+  
+  h5.mobaboutmetab1txt{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+  }
+
+  h4.mobaboutmetab2box{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    text-decoration: underline;
+  }
+
+  
+
+  div.mobskillspanel{
+    height:550px;
+    background-color: #bbbfca;
+    overflow: scroll;
+  }
+
+  div.mobskillsmain{
+    /* background-color: brown; */
+    position: relative;
+    /* top:50px; */
+    width:100%;
+    /* margin:auto; */
+  }
+
+  div.mobexpmain{
+    /* background-color: brown; */
+    position: relative;
+    /* top:10px; */
+    width:100%;
+    margin:auto;
+  }
+
+  div.mobportfmain{
+    /* background-color: brown; */
+    position: relative;
+    /* top:10px; */
+    width:100%;
+    /* margin:auto; */
+    /* height:300px; */
+  }
+
+  div.mobportfoliocertpanel{
+    height:700px;
+  }
+
+  div.mobportfoliocertpanel{
+    height:600px;
+  }
+
+  div.mobmaintitlediv{
+    height: 30%;
+    /* background-color: red; */
+    /* top: 10%; */
+    width: 100%;
+    /* position:relative; */
+  }
+
+  h2.mobmaintitlename{
+    left: 25%;
+    position: relative;
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    margin: auto;
+  }
+  
+  h2.mobmaintitlename2{
+    /* left: 10%; */
+    /* position: relative; */
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    margin: 1px;
+    /* size: 10px; */
+  }
+
+  h2.mobmaintitlscroll{
+    /* left: 20%; */
+    /* position: relative; */
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    margin: auto;
+  }
+  div.mobmainscrolltopdiv{
+    background-color: #797a7e;
+    background-image: url("images/toptitleback.png");
+  }
+
+  div.mobmainscrollbottomdiv{
+    background-color: #797a7e;
+    background-image: url("images/toptitleback.png");
+  }
+
+  img.mobmainabouticon{
+    height: 90px;
+    margin: auto;
+    position: relative;
+    left:25%;
+  }
+  
+  img.mobmainabouticon:hover {
+    /* background-color: #d9d9d9;  */
+    cursor: pointer;
+  }
+
+  h2.mobmidboxlabels1{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+    position: relative;
+    left:10%;
+  }
+  
+  h2.mobmidboxlabels2{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+    position: relative;
+    left:22%;
+  }
+  
+  h2.mobmidboxlabels3{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+    position: relative;
+    left:5%;
+  }
+  
+  h2.mobmidboxlabels4{
+    color: #214252;
+    font-family: 'Caveat', cursive;
+    /* text-decoration: underline; */
+    margin: auto;
+    position: relative;
+    left:12%;
+  }
+
+  div.mobtoplabelback{
+    background-color: #797a7e;
+    background-image: url("images/toplabelback.png");
+  }
+
+  header.mobaboutmecontentframe{
+    background-color: #a6a9b6;
+  }
+
+  button.mobskillimagebtn{
+    background-color: transparent;
+  }
+  
+  header.mobportfoliocontentframe{
+    background-color: #a6a9b6;
+  }
+  
+
+
+
+}

@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-portfolio-api
+
+  SAM template for API
+Globals:
+  Function:
+    Timeout: 10
+
+Parameters:
+  InfraStackName:
+    Description: Existing Infra stack name
+    Type: String
+    Default: AppInfraStack
+
+Resources:
+  PortfolioAPIFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: src/
+      Handler: main.lambda_handler
+      Runtime: python3.8
+      Role: 
+        Fn::ImportValue: !Sub "${InfraStackName}::LambdaTrustRole"
+      Layers:
+        - !Ref libs
+      Events:
+        PortfolioApp:
+          Type: Api 
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: portfolioapp-python-lib
+      Description: Dependencies for the portfolio app.
+      ContentUri: package/.
+      CompatibleRuntimes:
+        - python3.8
+
+  VisitorsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "visitorid"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "visitorid"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: "visitors"
+
+Outputs:
+  PortfolioAppApi:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  PortfolioAPIFunction:
+    Description: "Function ARN"
+    Value: !GetAtt PortfolioAPIFunction.Arn

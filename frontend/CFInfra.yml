@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+
+
+Resources:
+  SRCS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: <bucket_name>
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+  WebBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket:
+        Ref: SRCS3Bucket
+      PolicyDocument:
+          Statement:
+            - Action:
+                - 's3:GetObject'
+              Effect: Allow
+              Principal: "*"
+              Resource:
+                - 'Fn::Join':
+                    - ''
+                    - - 'arn:aws:s3:::'
+                      - Ref: SRCS3Bucket
+                      - /*
+
+  cloudfrontdistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: "true"
+        Aliases: 
+          - <domain_1>
+          - <domain_1>
+        ViewerCertificate:
+          AcmCertificateArn: <acm_cert_arn>
+          MinimumProtocolVersion: TLSv1.2_2019
+          SslSupportMethod: sni-only
+        Origins:
+          - DomainName: !GetAtt SRCS3Bucket.DomainName
+            Id: SRCS3BucketOrigin
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          TargetOriginId: SRCS3BucketOrigin
+          ForwardedValues:
+            QueryString: "false"
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        
+Outputs:
+  WebsiteURL:
+    Value:
+      'Fn::GetAtt':
+        - SRCS3Bucket
+        - WebsiteURL
+    Description: URL for website hosted on S3
+  SRCS3BucketSecureURL:
+    Value:
+      'Fn::Join':
+        - ''
+        - - 'https://'
+          - 'Fn::GetAtt':
+              - SRCS3Bucket
+              - DomainName
+    Description: Name of S3 bucket to hold website content

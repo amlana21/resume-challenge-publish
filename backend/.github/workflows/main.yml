@@ -1,0 +1,74 @@
+name: Deploy_portfolioapp_Backend
+
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+
+  build_test:
+    runs-on: ubuntu-20.04
+    container:
+      image: <custom_docker_image>
+      credentials:
+        username: <priv_registry_username>
+        password: <priv_registry_password>
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-1
+    steps:
+        - uses: actions/checkout@main
+
+        - name: Build
+          run: |
+            pip3 install -r requirements.txt
+            cd src
+            python3 -m unittest
+            cd ..
+            sam build
+
+  deploy_infra:
+    needs: build_test
+    runs-on: ubuntu-20.04
+    container:
+      image: <custom_docker_image>
+      credentials:
+        username: <priv_registry_username>
+        password: <priv_registry_password>
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-1
+    steps:
+        - uses: actions/checkout@main
+
+        - name: Deploy_Infra
+          run: |
+            aws cloudformation deploy --stack-name AppInfraStack --template-file infraCF.yml --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+
+  deploy_code:
+    if: success()
+    needs: [build_test,deploy_infra]
+    runs-on: ubuntu-20.04
+    container:
+      image: <custom_docker_image>
+      credentials:
+        username: <priv_registry_username>
+        password: <priv_registry_password>
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-1
+    steps:
+        - uses: actions/checkout@main
+
+        - name: Deploy_Infra
+          run: |
+            sleep 20
+            mkdir package
+            mkdir package/python
+            pip3 install -r requirements.txt -t package/python
+            sam deploy
